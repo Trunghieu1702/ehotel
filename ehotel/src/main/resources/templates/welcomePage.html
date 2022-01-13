@@ -1,15 +1,32 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
    <head>
       <title th:utext="${title}"></title>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   	  <meta http-equiv="Content-Language" content="en">
+  	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+   	  <meta name="description" content="This is an example dashboard created using build-in elements and components.">
+      <meta name="msapplication-tap-highlight" content="no">
+	  <link rel="icon" type="image/png" th:href="@{/resources/img/login/icons/favicon.ico}"/>
+	  <link rel="stylesheet" type="text/css" th:href="@{/resources/css/header_menu/main.css}">
    </head>
    
    <body>
-   
-      <!-- Include _menu.html -->
-      <th:block th:include="/_menu"></th:block>  
+   	<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+	<!--    	header-menu -->
+	<th:block th:include="/_menu"></th:block>
+	<div class="app-main">
+	<!-- 	right-menu -->
+	<th:block th:include="/_menu_right"></th:block>
+	<!-- 	main -->
+	<h2>Message : <span th:utext="${message}"></span></h2>
+	</div>
+   	</div>
       
-      <h2>Message : <span th:utext="${message}"></span></h2>
+      
       
    </body>
 </html>
