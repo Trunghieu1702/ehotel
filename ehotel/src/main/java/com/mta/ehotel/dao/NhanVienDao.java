@@ -1,10 +1,8 @@
 package com.mta.ehotel.dao;
 
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,10 +10,9 @@ import com.mta.ehotel.entity.DbNhanVien;
 
 @Repository
 @Transactional
-public class NhanVienDao {
+public class NhanVienDao extends BaseDao{
 
-	@Autowired
-	private EntityManager entityManager;
+	
 
 	public DbNhanVien findUserAccount(String userName) {
 		try {
@@ -29,6 +26,10 @@ public class NhanVienDao {
 		} catch (NoResultException e) {
 			return null;
 		}
+	}
+	
+	public void persist(DbNhanVien nv) {
+		entityManager.persist(nv);
 	}
 
 }

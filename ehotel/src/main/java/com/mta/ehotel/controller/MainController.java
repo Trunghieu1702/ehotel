@@ -2,6 +2,7 @@ package com.mta.ehotel.controller;
 
 import java.security.Principal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -9,27 +10,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mta.ehotel.dao.NhanVienDao;
+import com.mta.ehotel.entity.DbNhanVien;
 import com.mta.ehotel.utils.WebUtils;
 
 @Controller
 public class MainController {
 
+	@Autowired
+	private NhanVienDao nhanVienDao;
+	
 	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
-	public String welcomePage(Model model) {
-		model.addAttribute("title", "Welcome");
-		model.addAttribute("message", "This is welcome page!");
-		return "welcomePage";
-	}
-
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String adminPage(Model model, Principal principal) {
-
+	public String welcomePage(Model model, Principal principal) {
 		User loginedUser = (User) ((Authentication) principal).getPrincipal();
 
 		String userInfo = WebUtils.toString(loginedUser);
 		model.addAttribute("userInfo", userInfo);
-
-		return "adminPage";
+		DbNhanVien nv = nhanVienDao.findUserAccount(loginedUser.getUsername());
+		model.addAttribute("user", nv);
+		model.addAttribute("title", "Welcome");
+		model.addAttribute("message", "This is welcome page!");
+		return "welcomePage";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -40,8 +41,13 @@ public class MainController {
 
 	@RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
 	public String logoutSuccessfulPage(Model model) {
-		model.addAttribute("title", "Logout");
-		return "logoutSuccessfulPage";
+		try {
+			model.addAttribute("title", "Logout");
+			return "logoutSuccessfulPage";
+		} catch (Exception e) {
+			return "403Page";
+		}
+		
 	}
 
 	@RequestMapping(value = "/userInfo", method = RequestMethod.GET)
