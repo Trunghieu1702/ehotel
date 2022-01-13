@@ -15,20 +15,20 @@ import com.mta.ehotel.entity.DbNhanVien;
 public class NhanVienDao {
 
 	@Autowired
-    private EntityManager entityManager;
-	
+	private EntityManager entityManager;
+
 	public DbNhanVien findUserAccount(String userName) {
-        try {
-            String sql = "Select e from " + DbNhanVien.class.getName() + " e " //
-                    + " Where e.code = :userName ";
+		try {
+			String sql = "Select e from " + DbNhanVien.class.getName() + " e " //
+					+ " Where e.code = :userName ";
 
-            Query query = entityManager.createQuery(sql, DbNhanVien.class);
-            query.setParameter("userName", userName);
+			Query query = entityManager.createQuery(sql, DbNhanVien.class);
+			query.setParameter("userName", userName);
 
-            return (DbNhanVien) query.getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
-	
+			return (DbNhanVien) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
 }

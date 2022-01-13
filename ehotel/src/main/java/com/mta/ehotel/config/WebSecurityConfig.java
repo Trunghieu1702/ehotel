@@ -15,10 +15,9 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 
 import com.mta.ehotel.service.UserDetailsServiceImpl;
 
-
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 
@@ -26,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	private DataSource dataSource;
 
 	@Bean
-	public static  BCryptPasswordEncoder passwordEncoder() {
+	public static BCryptPasswordEncoder passwordEncoder() {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		return bCryptPasswordEncoder;
 	}
@@ -50,7 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 		// Trang /userInfo yêu cầu phải login với vai trò ROLE_USER hoặc ROLE_ADMIN.
 		// Nếu chưa login, nó sẽ redirect tới trang /login.
-		http.authorizeRequests().antMatchers("/userInfo","/livestream","/signal","/*").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+		http.authorizeRequests().antMatchers("/userInfo", "/livestream", "/signal", "/*")
+				.access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 
 		// Trang chỉ dành cho ADMIN
 		http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");

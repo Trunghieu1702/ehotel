@@ -18,30 +18,28 @@ import com.mta.ehotel.entity.DbNhanVien;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
-    private NhanVienDao nhanVienDao;
+	@Autowired
+	private NhanVienDao nhanVienDao;
 
-    @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        DbNhanVien dbNhanVien = this.nhanVienDao.findUserAccount(userName);
+	@Override
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+		DbNhanVien dbNhanVien = this.nhanVienDao.findUserAccount(userName);
 
-        if (dbNhanVien == null) {
-            System.out.println("User not found! " + userName);
-            throw new UsernameNotFoundException("User " + userName + " was not found in the database");
-        }
+		if (dbNhanVien == null) {
+			System.out.println("User not found! " + userName);
+			throw new UsernameNotFoundException("User " + userName + " was not found in the database");
+		}
 
-        System.out.println("Found User: " + dbNhanVien);
+		System.out.println("Found User: " + dbNhanVien);
 
-        
+		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
+		GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + dbNhanVien.getRole().toString());
+		grantList.add(authority);
 
-        List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
-        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_"+dbNhanVien.getRole().toString());
-        grantList.add(authority);
+		UserDetails userDetails = (UserDetails) new User(dbNhanVien.getCode(), //
+				dbNhanVien.getPassword(), true, true, true, true, grantList);
 
-        UserDetails userDetails = (UserDetails) new User(dbNhanVien.getCode(), //
-        		dbNhanVien.getPassword(),true,true,true,true, grantList);
-
-        return userDetails;
-    }
+		return userDetails;
+	}
 
 }

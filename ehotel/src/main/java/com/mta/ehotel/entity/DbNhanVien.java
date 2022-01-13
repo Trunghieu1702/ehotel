@@ -9,46 +9,44 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "nhanvien",
-uniqueConstraints = { //
-		@UniqueConstraint(name = "nhanvien_uk", columnNames = "email") }
-)
+@Table(name = "nhanvien", uniqueConstraints = { //
+		@UniqueConstraint(name = "nhanvien_uk", columnNames = "email") })
 public class DbNhanVien {
 
 	@Id
 	@Column(name = "code", nullable = false)
 	private String code;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "password")
 	private String password;
 
 	@Column(name = "birthday")
 	private Timestamp birthday;
-	
+
 	@Column(name = "sex")
 	private String sex;
-	
+
 	@Column(name = "address")
 	private String address;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "phone_number")
 	private String phone_number;
-	
+
 	@Column(name = "start_date")
 	private Timestamp start_date;
-	
+
 	@Column(name = "role")
 	private String role;
-	
+
 	@Column(name = "status")
 	private int status;
-	
+
 	@Column(name = "deleteflag")
 	private int deleteflag;
 
@@ -147,7 +145,5 @@ public class DbNhanVien {
 	public void setDeleteflag(int deleteflag) {
 		this.deleteflag = deleteflag;
 	}
-	
-	
-	
+
 }
