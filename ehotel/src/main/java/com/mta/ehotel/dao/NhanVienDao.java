@@ -27,9 +27,5 @@ public class NhanVienDao extends BaseDao{
 			return null;
 		}
 	}
-	
-	public void persist(DbNhanVien nv) {
-		entityManager.persist(nv);
-	}
 
 }

@@ -11,7 +11,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "nhanvien", uniqueConstraints = { //
 		@UniqueConstraint(name = "nhanvien_uk", columnNames = "email") })
-public class DbNhanVien {
+public class DbNhanVien extends BaseEntity{
 
 	@Id
 	@Column(name = "code", nullable = false)
