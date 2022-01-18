@@ -101,5 +101,4 @@ public abstract class BaseMgr {
 	public void refresh(BaseEntity entity) {
 		getDAO().refresh(entity);
 	}
-	
 }

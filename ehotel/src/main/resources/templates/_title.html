@@ -31,7 +31,7 @@
                             </div>
                         </div>
 <script type="text/javascript" th:inline="javascript">
-	var functionTitle = [[${btnFunction}]]==null?"":[[${btnFunction}]];
+	var functionTitle = [[${btnFunction ==null ?"": btnFunction}]];
 	
 	if(functionTitle!=null){
 		for (var func in functionTitle) {

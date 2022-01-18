@@ -2,7 +2,6 @@ package com.mta.ehotel.object;
 
 import java.sql.Timestamp;
 
-import com.mta.ehotel.dto.UserDisplay;
 import com.mta.ehotel.entity.BaseEntity;
 import com.mta.ehotel.entity.DbNhanVien;
 import com.mta.ehotel.utils.StrUtils;
