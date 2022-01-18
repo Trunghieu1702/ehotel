@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mta.ehotel.dao.NhanVienDao;
 import com.mta.ehotel.entity.DbNhanVien;
+import com.mta.ehotel.object.CtxUser;
 import com.mta.ehotel.utils.WebUtils;
 
 @Controller
-public class MainController {
+public class MainController extends BaseController{
 
 	@Autowired
 	private NhanVienDao nhanVienDao;
@@ -26,8 +27,8 @@ public class MainController {
 
 		String userInfo = WebUtils.toString(loginedUser);
 		model.addAttribute("userInfo", userInfo);
-		DbNhanVien nv = nhanVienDao.findUserAccount(loginedUser.getUsername());
-		model.addAttribute("user", nv);
+		CtxUser ctxUser = getCtxUser();
+		model.addAttribute("user", ctxUser);
 		model.addAttribute("title", "Welcome");
 		model.addAttribute("message", "This is welcome page!");
 		return "index";

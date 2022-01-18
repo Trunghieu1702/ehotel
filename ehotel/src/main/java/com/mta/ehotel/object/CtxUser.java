@@ -14,6 +14,7 @@ public class CtxUser extends User implements BaseUser{
 	private String role;
 	private String name;
 	private String email;
+	private String imgurl;
 
 	public String getRole() {
 		return role;
@@ -39,6 +40,14 @@ public class CtxUser extends User implements BaseUser{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getImgurl() {
+		return imgurl;
+	}
+
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
 	}
 
 	private DbNhanVien userObject;
@@ -70,5 +79,11 @@ public class CtxUser extends User implements BaseUser{
 		setEmail(user.getEmail());
 		setRole(user.getRole());
 		setName(user.getName());
+		setImgurl(user.getImgurl());
+	}
+	
+	public String getAvatarImagePath() {
+		if(imgurl==null||getUsername() ==null) return null;
+		return "/Upload/Avatar/"+getUsername()+"/"+imgurl;
 	}
 }

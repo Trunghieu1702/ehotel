@@ -35,13 +35,16 @@
 							<div class="main-card mb-3 card">
 								<div class="card-body">
 									<h5 class="card-title">Thông Tin</h5>
-									<form class="" id="main" th:action="@{/saveNhanVien}" th:object="${UserDisplay}" method="POST">
+									<form class="" id="main" th:action="@{/saveNhanVien}" th:object="${UserDisplay}" method="POST" enctype="multipart/form-data">
 										<div class="row">
 											<div class="col-md-6">
-												<img alt="jpg" th:src="@{/resources/img/avatars/anhthe.jpg}" style="min-width: 75px;min-height: 100px;max-width: 80%;max-height: 80%;margin-left: 10%;border-radius: 30px;">
+											<div class="position-relative form-group" style="margin-left: 10%;">
+												<label for="exampleFile" class="">Ảnh :</label>
+											</div>
+												<img alt="jpg" id="imgAvatar" th:src="${UserDisplay.getAvatarImagePath()}" style="min-width: 75px;min-height: 100px;max-width: 80%;max-height: 80%;margin-left: 10%;border-radius: 30px;">
 												<div class="position-relative form-group" style="margin-left: 10%;">
-													<label for="exampleFile" class="">Ảnh</label><input
-														name="file" id="exampleFile" type="file"
+													<input
+														name="fileAvatar" id="fileAvatar" type="file" accept="image/*"
 														class="form-control-file"> <small
 														class="form-text text-muted">Tải Ảnh Đại Diện</small>
 												</div>
@@ -83,7 +86,7 @@
 											</div>
 
 										</div>
-										<button class="mt-2 btn btn-primary" id="btnSubmit">Submit</button>
+										<button class="mt-2 btn btn-primary" id="btnSubmit" style="margin-left: 45%;">Submit</button>
 									</form>
 								</div>
 							</div>
@@ -99,10 +102,23 @@
 $( document ).ready(function() {
 	if([[${readonly}]]){
 		$("#main :input").prop('disabled', true);
-		$("#btnSubmit").prop('disabled', true);
+		$("#btnSubmit").hide();
 	}
 	
 });
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
+        reader.onload = function (e) {
+            $('#imgAvatar').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#fileAvatar").change(function(){
+    readURL(this);
+});
 </script>
 </html>

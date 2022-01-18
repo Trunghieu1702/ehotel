@@ -51,6 +51,9 @@ public class DbNhanVien extends BaseEntity{
 
 	@Column(name = "deleteflag")
 	private int deleteflag;
+	
+	@Column(name = "imgurl")
+	private String imgurl;
 
 	public String getCode() {
 		return code;
@@ -154,4 +157,13 @@ public class DbNhanVien extends BaseEntity{
 		this.deleteflag = deleteflag;
 	}
 
+	public String getImgurl() {
+		return imgurl;
+	}
+
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
+	}
+
+	
 }

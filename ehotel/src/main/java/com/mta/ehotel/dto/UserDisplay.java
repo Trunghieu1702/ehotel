@@ -29,6 +29,8 @@ public class UserDisplay {
 
 	private int deleteflag;
 
+	private String imgurl;
+	
 	public String getCode() {
 		return code;
 	}
@@ -125,6 +127,14 @@ public class UserDisplay {
 		this.deleteflag = deleteflag;
 	}
 	
+	public String getImgurl() {
+		return imgurl;
+	}
+
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
+	}
+
 	public UserDisplay() {}
 	
 	public UserDisplay(NhanVien nv) {
@@ -140,6 +150,11 @@ public class UserDisplay {
 		this.sex=nv.getSex();
 		this.start_date = nv.getStart_date().toLocalDateTime().format(FORMATTER);
 		this.status = nv.getStatus();
+		this.imgurl = nv.getImgurl();
 	}
 
+	public String getAvatarImagePath() {
+		if(imgurl==null||code ==null) return null;
+		return "/Upload/Avatar/"+code+"/"+imgurl;
+	}
 }

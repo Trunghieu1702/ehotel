@@ -1,5 +1,8 @@
 package com.mta.ehotel.config;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -16,5 +19,11 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/resources/js/**").addResourceLocations("classpath:/static/js/");
 		registry.addResourceHandler("/resources/libs/**").addResourceLocations("classpath:/static/libs/");
 		registry.addResourceHandler("/resources/img/**").addResourceLocations("classpath:/static/img/");
+		
+		
+		Path avatarUploadDir = Paths.get("./Upload/Avatar");
+		String avatarUploadPath= avatarUploadDir.toFile().getAbsolutePath();
+		registry.addResourceHandler("/Upload/Avatar/**").addResourceLocations("file:/"+avatarUploadPath+"/");
+	
 	}
 }

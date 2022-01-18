@@ -153,6 +153,13 @@ public class NhanVien extends BaseObject implements BaseUser{
 		dbNhanVien.setDeleteflag(deleteflag);
 	}
 	
+	public String getImgurl() {
+		return dbNhanVien.getImgurl();
+	}
+
+	public void setImgurl(String imgurl) {
+		dbNhanVien.setImgurl(imgurl);
+	}
 	
 	@Override
 	public BaseEntity getDbEntity() {
