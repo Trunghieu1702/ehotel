@@ -1,55 +1,32 @@
-package com.mta.ehotel.entity;
+package com.mta.ehotel.dto;
 
-import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import com.mta.ehotel.object.NhanVien;
 
-import com.mta.ehotel.utils.StrUtils;
-
-@Entity
-@Table(name = "nhanvien", uniqueConstraints = { //
-		@UniqueConstraint(name = "nhanvien_uk", columnNames = "email") })
-public class DbNhanVien extends BaseEntity{
-
-	@Id
-	@Column(name = "code", nullable = false)
+public class UserDisplay {
 	private String code;
 
-	@Column(name = "name")
 	private String name;
 
-	@Column(name = "password")
 	private String password;
 
-	@Column(name = "birthday")
-	private Timestamp birthday;
+	private String birthday;
 
-	@Column(name = "sex")
 	private String sex;
 
-	@Column(name = "address")
 	private String address;
 
-	@Column(name = "email")
 	private String email;
 
-	@Column(name = "phone_number")
 	private String phone_number;
 
-	@Column(name = "start_date")
-	private Timestamp start_date;
+	private String start_date;
 
-	@Column(name = "role")
 	private String role;
 
-	@Column(name = "status")
 	private int status;
 
-	@Column(name = "deleteflag")
 	private int deleteflag;
 
 	public String getCode() {
@@ -76,16 +53,12 @@ public class DbNhanVien extends BaseEntity{
 		this.password = password;
 	}
 
-	public Timestamp getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Timestamp birthday) {
-		this.birthday = birthday;
-	}
-	
 	public void setBirthday(String birthday) {
-		this.birthday = StrUtils.convertStringToTimestamp(birthday);
+		this.birthday = birthday;
 	}
 
 	public String getSex() {
@@ -120,16 +93,14 @@ public class DbNhanVien extends BaseEntity{
 		this.phone_number = phone_number;
 	}
 
-	public Timestamp getStart_date() {
+	public String getStart_date() {
 		return start_date;
 	}
 
-	public void setStart_date(Timestamp start_date) {
+	public void setStart_date(String start_date) {
 		this.start_date = start_date;
 	}
-	public void setStart_date(String start_date) {
-		this.start_date = StrUtils.convertStringToTimestamp(start_date);
-	}
+
 	public String getRole() {
 		return role;
 	}
@@ -152,6 +123,23 @@ public class DbNhanVien extends BaseEntity{
 
 	public void setDeleteflag(int deleteflag) {
 		this.deleteflag = deleteflag;
+	}
+	
+	public UserDisplay() {}
+	
+	public UserDisplay(NhanVien nv) {
+		DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		this.name=nv.getName();
+		this.code= nv.getCode();
+		this.address = nv.getAddress();
+		this.birthday= nv.getBirthday().toLocalDateTime().format(FORMATTER);
+		this.email = nv.getEmail();
+		this.password=nv.getPassword();
+		this.phone_number=nv.getPhone_number();
+		this.role=nv.getRole();
+		this.sex=nv.getSex();
+		this.start_date = nv.getStart_date().toLocalDateTime().format(FORMATTER);
+		this.status = nv.getStatus();
 	}
 
 }

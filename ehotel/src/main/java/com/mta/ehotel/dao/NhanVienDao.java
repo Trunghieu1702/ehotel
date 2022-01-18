@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mta.ehotel.entity.DbNhanVien;
+import com.mta.ehotel.object.NhanVien;
 
 @Repository
 @Transactional
@@ -26,6 +27,10 @@ public class NhanVienDao extends BaseDao{
 		} catch (NoResultException e) {
 			return null;
 		}
+	}
+	
+	public void persist(NhanVienDao nv) {
+		entityManager.persist(nv);
 	}
 
 }

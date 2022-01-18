@@ -1,5 +1,8 @@
 package com.mta.ehotel.object;
 
+import java.sql.Timestamp;
+
+import com.mta.ehotel.dto.UserDisplay;
 import com.mta.ehotel.entity.BaseEntity;
 import com.mta.ehotel.entity.DbNhanVien;
 import com.mta.ehotel.utils.StrUtils;
@@ -10,13 +13,7 @@ public class NhanVien extends BaseObject implements BaseUser{
 	
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getEmail() {
-		// TODO Auto-generated method stub
+		dbNhanVien.getCode();
 		return null;
 	}
 
@@ -35,15 +32,134 @@ public class NhanVien extends BaseObject implements BaseUser{
 	public NhanVien(DbNhanVien dbNhanVien) {
 		setDbNhanVien(dbNhanVien);
 	}
+//	public void setNhanVien(UserDisplay user) {
+//		
+//		setAddress(user.getAddress());
+//		setBirthday(user.getBirthday());
+////		setCode(user.getCode());
+//		setEmail(user.getEmail());
+//		setName(user.getName());
+//		setPassword(user.getPassword());
+//		setPhone_number(user.getPhone_number());
+//		setRole(user.getRole());
+//		setSex(user.getSex());
+//		setStart_date(user.getStart_date());
+//		setStatus(user.getStatus());
+//	}
+	/*
+	 * addd method
+	 */
+	
+	public String getCode() {
+		return dbNhanVien.getCode();
+	}
+
+	public void setCode(String code) {
+		dbNhanVien.setCode(code);
+	}
+
+	public String getName() {
+		return dbNhanVien.getName();
+	}
+
+	public void setName(String name) {
+		dbNhanVien.setName(name);
+	}
+
+	public String getPassword() {
+		return dbNhanVien.getPassword();
+	}
+
+	public void setPassword(String password) {
+		dbNhanVien.setPassword(password);
+	}
+
+	public Timestamp getBirthday() {
+		return dbNhanVien.getBirthday();
+	}
+
+	public void setBirthday(Timestamp birthday) {
+		dbNhanVien.setBirthday(birthday);
+	}
+	
+	public void setBirthday(String birthday) {
+		dbNhanVien.setBirthday(birthday);
+	}
+
+	public String getSex() {
+		return dbNhanVien.getSex();
+	}
+
+	public void setSex(String sex) {
+		dbNhanVien.setSex(sex);
+	}
+
+	public String getAddress() {
+		return dbNhanVien.getAddress();
+	}
+
+	public void setAddress(String address) {
+		dbNhanVien.setAddress(address);
+	}
+
+	public String getEmail() {
+		return dbNhanVien.getEmail();
+	}
+
+	public void setEmail(String email) {
+		dbNhanVien.setEmail(email);
+	}
+
+	public String getPhone_number() {
+		return dbNhanVien.getPhone_number();
+	}
+
+	public void setPhone_number(String phone_number) {
+		dbNhanVien.setPhone_number(phone_number);
+	}
+
+	public Timestamp getStart_date() {
+		return dbNhanVien.getStart_date();
+	}
+
+	public void setStart_date(Timestamp start_date) {
+		dbNhanVien.setStart_date(start_date);
+	}
+	
+	public void setStart_date(String start_date) {
+		dbNhanVien.setStart_date(start_date);
+	}
+
+	public String getRole() {
+		return dbNhanVien.getRole();
+	}
+
+	public void setRole(String role) {
+		dbNhanVien.setRole(role);
+	}
+
+	public int getStatus() {
+		return dbNhanVien.getStatus();
+	}
+
+	public void setStatus(int status) {
+		dbNhanVien.setStatus(status);
+	}
+
+	public int getDeleteflag() {
+		return dbNhanVien.getDeleteflag();
+	}
+
+	public void setDeleteflag(int deleteflag) {
+		dbNhanVien.setDeleteflag(deleteflag);
+	}
+	
 	
 	@Override
 	public BaseEntity getDbEntity() {
 		return getDbNhanVien();
 	}
-	/*
-	 * addd method
-	 */
-
+	
 	@Override
 	public boolean validate() {
 		return validateUsername()&& validateEmail();
@@ -64,5 +180,5 @@ public class NhanVien extends BaseObject implements BaseUser{
 	public boolean validateEmail() {
 		return StrUtils.isEmailAddress(getEmail());
 	}
-	 
+	
 }

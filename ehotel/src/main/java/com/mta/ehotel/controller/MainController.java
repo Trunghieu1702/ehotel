@@ -20,7 +20,7 @@ public class MainController {
 	@Autowired
 	private NhanVienDao nhanVienDao;
 	
-	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String welcomePage(Model model, Principal principal) {
 		User loginedUser = (User) ((Authentication) principal).getPrincipal();
 
@@ -30,7 +30,7 @@ public class MainController {
 		model.addAttribute("user", nv);
 		model.addAttribute("title", "Welcome");
 		model.addAttribute("message", "This is welcome page!");
-		return "welcomePage";
+		return "index";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
